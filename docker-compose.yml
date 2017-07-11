@@ -1,0 +1,23 @@
+---
+version: '3'
+services:
+
+  perdition:
+    image: strannick/ubuntu-with-perdition
+    volumes:
+      - ./perdition:/srv/perdition
+    entrypoint: /srv/perdition/start.sh
+
+  imapproxy:
+    image: strannick/ubuntu-with-imapproxy
+    volumes:
+      - ./imapproxy:/srv/imapproxy
+    entrypoint: /srv/imapproxy/start.sh
+
+  roundcube:
+    image: strannick/ubuntu-with-nginx-php-roundcube
+    ports:
+    - "8080:80"
+    volumes:
+      - ./roundcube:/srv/roundcube
+    entrypoint: /srv/roundcube/start.sh
